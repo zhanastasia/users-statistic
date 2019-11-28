@@ -1,8 +1,8 @@
-import { User } from "./../../models/user.model";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { map } from "rxjs/operators";
+import { map, catchError } from "rxjs/operators";
 
+import { User } from "./../../models/user.model";
 import { UserView } from "../../models/user-view.model";
 import { UserService } from "../../service/user.service";
 import * as constants from "./../../../core/constants/constants";
@@ -31,8 +31,12 @@ export class UsersComponent implements OnInit {
           if (!res) {
             return [];
           }
-
           return res;
+        }),
+
+        catchError(err => {
+          console.log("err.message ", err.message);
+          throw err;
         })
       )
       .subscribe(users => {

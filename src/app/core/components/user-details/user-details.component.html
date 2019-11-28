@@ -1,1 +1,42 @@
 <p>Hi, I`m user!</p>
+
+<div class="chart-wrapper" *ngIf="chartReady">
+  <canvas
+    baseChart
+    [datasets]="lineChartData"
+    [labels]="lineChartLabels"
+    [options]="lineChartOptions"
+    [colors]="lineChartColors"
+    [legend]="lineChartLegend"
+    [chartType]="lineChartType"
+    [plugins]="lineChartPlugins"
+  >
+  </canvas>
+</div>
+
+<div class="input-group mb-3 mt-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">From Date</span>
+  </div>
+  <input
+    [(ngModel)]="fromDate"
+    (keydown.enter)="fitreringDate()"
+    type="text"
+    class="form-control"
+    aria-label="Default"
+    aria-describedby="inputGroup-sizing-default"
+  />
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">To Date</span>
+  </div>
+  <input
+    [(ngModel)]="toDate"
+    (keydown.enter)="fitreringDate()"
+    type="text"
+    class="form-control"
+    aria-label="Default"
+    aria-describedby="inputGroup-sizing-default"
+  />
+</div>
